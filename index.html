@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Неожиданное</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0b0c10;
+      color: #c5c6c7;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    #message {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 2.5s ease;
+      text-align: center;
+      max-width: 700px;
+      font-size: 1.8em;
+      line-height: 1.6;
+    }
+
+    #message.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .sparkles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #66fcf1;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: float 4s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="message">
+  🌌 Иногда жизнь шепчет самые важные вещи, когда ты не ждёшь.  
+  <br><br>
+  Если ты читаешь это — значит, ты умеешь останавливаться и замечать чудеса.  
+  <br><br>
+  Продолжай идти. Всё будет хорошо. Даже лучше.
+</div>
+<div class="sparkles" id="sparkles"></div>
+
+<script>
+  // Показываем сообщение через 3 секунды
+  setTimeout(() => {
+    document.getElementById('message').classList.add('show');
+  }, 3000);
+
+  // Создаём искры
+  const sparklesContainer = document.getElementById('sparkles');
+  for (let i = 0; i < 50; i++) {
+    const s = document.createElement('div');
+    s.classList.add('sparkle');
+    s.style.left = `${Math.random() * 100}%`;
+    s.style.animationDelay = `${Math.random() * 5}s`;
+    s.style.animationDuration = `${3 + Math.random() * 4}s`;
+    sparklesContainer.appendChild(s);
+  }
+</script>
+
+</body>
+</html>
